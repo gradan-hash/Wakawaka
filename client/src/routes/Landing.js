@@ -13,7 +13,7 @@ function Landing() {
         </p>
         <Link to="/properties">
           <button className="btn-house" >
-            <strong>Find a house </strong>
+            <strong>Find a House </strong>
           </button>
         </Link>
       </section>
