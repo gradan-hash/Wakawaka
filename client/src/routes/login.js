@@ -122,7 +122,7 @@ export default function Login() {
               </div>
             )}
 
-            <Link to="/landlordlogin">login as landlord</Link>
+            <Link to="/landlordlogin">Login as landlord</Link>
           </form>
 
           {/* {!user && <div style={{color: "red"}}>please use correct details</div>} */}
