@@ -53,13 +53,13 @@ export const login = async (req, res, next) => {
 };
 
 
-const client = new OAuth2Client('814954184000-dv2s9j06qb3ni76rlmjhe732mn9u3a8m.apps.googleusercontent.com');
+const client = new OAuth2Client(GoogleClie
 
 export async function verifyGoogleToken(req, res) {
   try {
     const ticket = await client.verifyIdToken({
       idToken: req.body.access_token,
-      audience: '814954184000-dv2s9j06qb3ni76rlmjhe732mn9u3a8m.apps.googleusercontent.com',
+      audience: GoogleClientId,
     });
     const payload = ticket.getPayload();
     const userId = payload['sub'];
