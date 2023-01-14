@@ -12,6 +12,7 @@ import axios from "axios";
 import { loginRoute } from "../api/api";
 import { getMessage } from "../utils/util";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -39,29 +40,38 @@ export default function Login() {
   // const properties = () => {
   //   navigate("/Properties");
   // };
-
   async function submitHandler(e) {
     e.preventDefault();
 
     try {
       dispatch({ type: "LOGIN_REQUEST" });
-
-      const res = axios.post(loginRoute, data);
-      // console.log(res)
-      dispatch({ type: "LOGIN_SUCCESS", payload: data.details });
-      localStorage.setItem("auth", JSON.stringify(res.data));
-      navigate("/properties");
+      const res = await axios.post(loginRoute, data);
+      if (res.data.status === "error" || !res.data.token) {
+        swal(
+          "Oops!",
+          "Wrong details, please provide correct details.",
+          "error"
+        );
+      } else {
+        dispatch({ type: "LOGIN_SUCCESS", payload: data.details });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate("/properties");
+      }
     } catch (error) {
       dispatch({ type: "LOGIN_FAIL", payload: getMessage(error) });
     }
   }
 
   useEffect(() => {
-    if (user) {
-      navigate("/properties");
+    if (!user) {
+      navigate("/login");
+    }
+    else{
+      navigate("/prperties")
     }
     // navigate('/properties')
   }, [user]);
+
   return (
     <section>
       <div id="sec">

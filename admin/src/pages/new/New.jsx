@@ -83,7 +83,7 @@ const New = ({ inputs, title }) => {
         setLoading(false);
       }
     } else {
-      alert("image is reuired");
+      alert("image is required");
     }
   };
   return (

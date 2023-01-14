@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./properties.scss";
 import axios from "axios";
 import { buildingRoute } from "../api/api";
+import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 function Properties() {
   const [properties, setProperties] = useState([]);
@@ -23,6 +25,7 @@ function Properties() {
   }, []);
   return (
     <>
+      <Navbar />
       <div className="properties-wrapper">
         {loading ? (
           <p>loading</p>
@@ -35,22 +38,20 @@ function Properties() {
                 </div>
                 <div className="property-footer">
                   <h3 className="property-name">
-                    <Link to={`/properties/${p._id}`}>
-                      {p.apartmentName}
-                    </Link>
+                    <Link to={`/properties/${p._id}`}>{p.apartmentName}</Link>
                   </h3>
                   <p className="location">{p.location}</p>
                   <p className="location">{p.price}</p>
-                  <Link to={`/properties/${p._id}`} className="view-btn" >
+                  <Link to={`/properties/${p._id}`} className="view-btn">
                     View Deal
                   </Link>
-
                 </div>
               </div>
             </div>
           ))
         )}
       </div>
+      <Footer />
     </>
   );
 }

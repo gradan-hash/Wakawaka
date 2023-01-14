@@ -1,7 +1,7 @@
 import React from "react";
 import "./new.scss";
 import Sidebar from "../sidebar/Sidebar";
-import Navbar from "../navbar/Navbar";
+import Navbar2 from "../navbar/Navbar2";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import axios from "axios";
@@ -93,7 +93,7 @@ const New = ({ inputs, title }) => {
     <div className="new">
       <Sidebar />
       <div className="newcontainer">
-        <Navbar />
+        <Navbar2 />
         <div className="top">
           <h1>{title}</h1>
         </div>

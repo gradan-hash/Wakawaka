@@ -8,13 +8,13 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 
-function Navbar() {
+function Navbar2() {
   return (
-    <div className="navbar">
+    <div className="navbar2">
       <div className="wrapper">
         <div className="search">
-          <input type="text" placeholder="Search..." />
-          <SearchOutlinedIcon className="icon" />
+          {/* <input type="text" placeholder="Search..." />
+          <SearchOutlinedIcon className="icon" /> */}
         </div>
         <div className="items">
           <LanguageOutlinedIcon className="icon" />
@@ -55,4 +55,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Navbar2;

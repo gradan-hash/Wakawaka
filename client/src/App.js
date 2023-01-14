@@ -27,7 +27,6 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar cartLength={cartLength} />
         <Routes>
           <Route path="/" element={<Layout />} />
           <Route index element={<Landing />} />
@@ -38,24 +37,24 @@ export default function App() {
             path="properties/:id"
             element={<Singleproperty updateCartLength={updateCartLength} />}
           />
-
-          <Route path="landlordRegister" element={<LandlordRegister />} />
-
-          <Route path="landlordLogin" element={<LandlordLogin />} />
-
-          <Route path="landlordhome" element={<Home />} />
           <Route
             path="/productitems"
             element={<Cart updateCartLength={updateCartLength} />}
           />
+
           <Route path="/searchitems" element={<Search />} />
 
+          <Route path="/landlordRegister" element={<LandlordRegister />} />
+
+          <Route path="/landlordLogin" element={<LandlordLogin />} />
+
+          <Route path="/landlordhome" element={<Home />} />
+
           <Route
-            path="uploadnew"
+            path="/landlorduploadnew"
             element={<New inputs={buildingInputs} title="Add New Building" />}
           />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   );

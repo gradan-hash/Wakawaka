@@ -25,8 +25,10 @@ function Sidebar() {
         <ul>
           <p className="title">MAIN</p>
           <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
+            <Link to="/landlordhome" style={{textDecoration: "none"}}>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </Link>
           </li>
 
           <p className="title">LISTS</p>
@@ -37,7 +39,7 @@ function Sidebar() {
             </li>
           </Link>
 
-          <Link to="/uploadnew" style={{ textDecoration: "none" }}>
+          <Link to="/landlorduploadnew" style={{ textDecoration: "none" }}>
             <li>
               <CategoryTwoToneIcon className="icon" />
               <span>Upload Buildings</span>

@@ -3,6 +3,8 @@ import "./cart.scss";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { buildingRoute } from "../api/api";
+import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 function Cart({ setCart, updateCartLength }) {
   const [items, setItems] = useState([]);
@@ -12,13 +14,12 @@ function Cart({ setCart, updateCartLength }) {
     const fetchItems = async () => {
       try {
         setLoading(true);
-        
+
         const storedCart = localStorage.getItem("cart");
         console.log(storedCart);
 
-        
         const cartArray = storedCart ? JSON.parse(storedCart) : [];
-        // Fetch the details 
+        // Fetch the details
         const itemPromises = cartArray.map(async (item) => {
           console.log(item._id);
           const { data } = await axios.get(
@@ -28,10 +29,10 @@ function Cart({ setCart, updateCartLength }) {
         });
         const items = await Promise.all(itemPromises);
         console.log(items);
-      
+
         setItems(items);
         setLoading(false);
-      
+
         updateCartLength(items);
       } catch (error) {
         setLoading(false);
@@ -43,9 +44,8 @@ function Cart({ setCart, updateCartLength }) {
   const total = items.reduce((acc, item) => acc + item.price, 0);
 
   const handleDelete = (_id) => {
-    
     setItems(items.filter((item) => item._id !== _id));
-  
+
     const updatedCart = items.filter((item) => item._id !== `${_id}`);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
@@ -54,13 +54,14 @@ function Cart({ setCart, updateCartLength }) {
 
   const handleReset = () => {
     setItems([]);
-    
+
     localStorage.setItem("cart", JSON.stringify([]));
     updateCartLength([]);
   };
 
   return (
     <div className="cart">
+      <Navbar />
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -87,14 +88,12 @@ function Cart({ setCart, updateCartLength }) {
           </div>
           <button className="custom-button">PROCEED TO CHECKOUT</button>
 
-          <button
-            className="custom-button"
-            
-            onClick={handleReset}>
+          <button className="custom-button" onClick={handleReset}>
             Reset Cart
           </button>
         </>
       )}
+      <Footer />
     </div>
   );
 }

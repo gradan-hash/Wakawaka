@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 import { buildingRoute } from "../api/api";
 import "./Singleproperty.scss";
 import axios from "axios";
+import { requestsRoute } from "../api/api";
+import swal from "sweetalert";
+import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 function Singleproperty({ updateCartLength }) {
   const [property, setProperty] = useState({});
@@ -29,29 +33,36 @@ function Singleproperty({ updateCartLength }) {
   const cartArray = storedCart ? JSON.parse(storedCart) : [];
   const [cart, setCart] = useState(cartArray);
 
- 
   const handleAddToCart = () => {
-    
-   
-      setCart([...cart, property]);
-      // Save the cart to local storage
-      localStorage.setItem("cart", JSON.stringify(cart));
-      // Update the cart length in the Navbar component
-      updateCartLength(cart);
-      console.log(cart);
+    setCart([...cart, property]);
+    // Save the cart to local storage
+    localStorage.setItem("cart", JSON.stringify(cart));
+    // Update the cart length in the Navbar component
+    updateCartLength(cart);
+    console.log(cart);
 
-      window.alert("Item added to cart");
-    }
-  
+    window.alert("Item added to cart");
+  };
 
-
-  const handleClick = () => {
+  const handleClick = async () => {
     const message = `I am interested in buying/renting the apartment: *${property.apartmentName}* with price : *${property.price}* which is located at: *${property.location}* the description of the building is: *${property.description}* and would like to know more details.`;
-    window.open(`https://wa.me/791618714?text=${message}`);
+
+    try {
+      window.open(`https://wa.me/796881039?text=${message}`);
+      swal(
+        "Sent Successfully!",
+        "Your message has been sent successfully via WhatsApp.",
+        "success"
+      );
+    } catch (error) {
+      console.error(error);
+      swal("Oops!", "An error occurred, Please try again later.", "error");
+    }
   };
 
   return (
     <main>
+      <Navbar />
       {loading ? (
         <p>loading</p>
       ) : (
@@ -109,6 +120,7 @@ function Singleproperty({ updateCartLength }) {
           </div>
         </div>
       )}
+      <Footer />
     </main>
   );
 }

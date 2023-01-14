@@ -1,10 +1,12 @@
 import React from "react";
-
+import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 import { Link } from "react-router-dom";
 
 function Landing() {
   return (
     <main id="main">
+      <Navbar />
       <section className="finding-work">
         <p>
           <strong>
@@ -12,7 +14,7 @@ function Landing() {
           </strong>
         </p>
         <Link to="/properties">
-          <button className="btn-house" >
+          <button className="btn-house">
             <strong>Find a House </strong>
           </button>
         </Link>
@@ -96,6 +98,7 @@ function Landing() {
           </p>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
